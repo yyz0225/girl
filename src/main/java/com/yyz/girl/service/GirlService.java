@@ -31,10 +31,11 @@ public class GirlService {
     }
 
     /*统一异常处理*/
-    public void getAge(Integer id) throws Exception{
+    public Girl getAge(Integer id) throws Exception{
 
         //1.先查询出这个Girl对象
-        Girl girl=girlReposity.getOne(id);
+        //Girl girl=girlReposity.getOne(id);
+        Girl girl=girlReposity.findById(id).get();
         //2.判断年龄大小,返回结果
         if(girl.getAge()<10){
             //你还在上小学吧,,, code:100
@@ -43,5 +44,6 @@ public class GirlService {
             //你怕是个初中生哦,,, code:101
             throw new GirlException(ResultEnum.MIDDLE_SCHOOL);
         }
+        return girl;
     }
 }

@@ -1,10 +1,16 @@
 package com.yyz.girl.domains;
 
+import lombok.Data;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.validation.constraints.Min;
 
+/**
+ * lombok的@Data注解用于优化项目中的getter,setter,toString,equasl等方法,增加代码的维护性
+ */
+@Data
 @Entity
 public class Girl {
     @Id
@@ -16,10 +22,8 @@ public class Girl {
     @Min(value = 18,message = "未成年少女禁止入内!")
     private Integer age;
 
-    public Girl() {
-    }
 
-    public Integer getId() {
+    /*public Integer getId() {
         return id;
     }
 
@@ -50,5 +54,5 @@ public class Girl {
                 ", cupSize='" + cupSize + '\'' +
                 ", age=" + age +
                 '}';
-    }
+    }*/
 }

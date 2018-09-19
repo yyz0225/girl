@@ -1,8 +1,11 @@
 package com.yyz.girl.domains;
 
+import lombok.Data;
+
 /**
  * Http请求返回的最外层对象
  */
+@Data
 public class Result<T> {
 
     /*错误码*/
@@ -14,7 +17,7 @@ public class Result<T> {
     /*返回的具体内容,是一个泛型*/
     private T data;
 
-    public Integer getCode() {
+  /*  public Integer getCode() {
         return code;
     }
 
@@ -36,5 +39,5 @@ public class Result<T> {
 
     public void setData(T data) {
         this.data = data;
-    }
+    }*/
 }

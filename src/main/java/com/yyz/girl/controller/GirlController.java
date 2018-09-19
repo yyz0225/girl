@@ -5,20 +5,19 @@ import com.yyz.girl.domains.Result;
 import com.yyz.girl.repository.GirlReposity;
 import com.yyz.girl.service.GirlService;
 import com.yyz.girl.utils.ResultUtil;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.java.Log;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.StringUtils;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import java.util.List;
-
+/*lombok的@log注解自动生成一个log对象*/
+@Log
 @RestController
 public class GirlController {
 
-    public static final Logger LOGGER= LoggerFactory.getLogger(GirlController.class);
+    //public static final Logger LOGGER= LoggerFactory.getLogger(GirlController.class);
 
     @Autowired
     private GirlReposity girlReposity;
@@ -27,8 +26,8 @@ public class GirlController {
 
     /*获取所有的女生列表 get方式*/
     @GetMapping(value="/girls")
-    public List<Girl> girlList(){
-       return girlReposity.findAll();
+    public Result<Girl> girlList(){
+       return ResultUtil.success(girlReposity.findAll());
     }
     /*新建一个女生 POST方式 增加表单验证
     * Girl girl创建一个对象,保证代码的简洁性
@@ -50,40 +49,42 @@ public class GirlController {
     }
     /*通过ID查询女生信息*/
     @GetMapping(value = "/girls/{id}")
-    public Girl find(@PathVariable("id")Integer id){
+    public Result<Girl> find(@PathVariable("id")Integer id){
         //System.out.println("kkkkk");
-        LOGGER.info("find");
+        log.info("find");
        Girl girl= girlReposity.findById(id).get();
        // Girl girl=girlReposity.getOne(id);
-      return  girl;
+      return  ResultUtil.success(girl);
     }
     /*通过ID更新女生信息*/
     @PutMapping(value = "/girls/{id}")
-    public Girl update(@PathVariable("id") Integer id,@RequestParam("cupSize") String cupSize,@RequestParam("age") Integer age){
+    public Result<Girl> update(@PathVariable("id") Integer id,@RequestParam("cupSize") String cupSize,@RequestParam("age") Integer age){
         Girl girl=new Girl();
         girl.setId(id);
         girl.setCupSize(cupSize);
         girl.setAge(age);
-        return girlReposity.save(girl);
+        return ResultUtil.success(girlReposity.save(girl));
     }
     /*通过ID删除女生信息*/
     @DeleteMapping(value = "/girls/{id}")
-    public void delete(@PathVariable("id") Integer id){
-       girlReposity.deleteById(id);
+    public Result<Girl>  delete(@PathVariable("id") Integer id){
+        girlReposity.deleteById(id);
+        return ResultUtil.success();
     }
     /*通过年龄查询女生信息*/
     @GetMapping(value = "/girls/find/{age}")
-    public List<Girl> findByAge(@PathVariable("age")Integer age){
-       return girlReposity.findByAge(age);
+    public Result<Girl> findByAge(@PathVariable("age")Integer age){
+       return ResultUtil.success(girlReposity.findByAge(age));
     }
 
     @PostMapping(value = "/girls/two")
-    public void insertTwo(){
+    public Result<Girl> insertTwo(){
         girlService.insertTwo();
+        return ResultUtil.success();
     }
 
     @GetMapping(value ="/girls/getAge/{id}")
-    public void getAge(@PathVariable Integer id) throws Exception{
-        girlService.getAge(id);
+    public Result<Girl> getAge(@PathVariable Integer id) throws Exception{
+        return ResultUtil.success(girlService.getAge(id));
     }
 }
