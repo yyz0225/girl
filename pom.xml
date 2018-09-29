@@ -11,6 +11,7 @@
 	<name>girl</name>
 	<description>Demo project for Spring Boot</description>
 
+	<!--spring boot启动父依赖-->
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
@@ -18,11 +19,13 @@
 		<relativePath/> <!-- lookup parent from com.yyz.girl.repository -->
 	</parent>
 
+	<!--springboot统一版本控制-->
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 		<java.version>1.8</java.version>
 		<lombok.version>1.18.2</lombok.version>
+		<junit.version>4.12</junit.version>
 	</properties>
 
 	<dependencies>
@@ -61,8 +64,31 @@
 			<artifactId>lombok</artifactId>
 			<version>${lombok.version}</version>
 		</dependency>
+		<!--添加单元测试依赖包-->
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>${junit.version}</version>
+		</dependency>
 	</dependencies>
 
+	<!--spring boot添加不同的maven编译环境,配置profiles-->
+	<profiles>
+		<profile>
+			<id>prod</id>
+			<properties>
+				<jar.source>${java.version}</jar.source>
+				<jar.target>${java.version}</jar.target>
+			</properties>
+		</profile>
+		<profile>
+			<id>dev</id>
+			<properties>
+				<jar.source>${java.version}</jar.source>
+				<jar.target>${java.version}</jar.target>
+			</properties>
+		</profile>
+	</profiles>
 	<build>
 		<finalName>girl</finalName>
 		<plugins>
@@ -78,8 +104,9 @@
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
 				<configuration>
-					<source>1.8</source>
-					<target>1.8</target>
+					<source>${jar.source}</source>
+					<target>${jar.target}</target>
+					<encoding>utf-8</encoding>
 				</configuration>
 			</plugin>
 		</plugins>

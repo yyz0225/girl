@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 /*
 @RestController spring4之后引入的注解,相当于@controller和@
-ResponseBody注解的合成,用于返回字符串类型的数据*/
+ResponseBody注解的合成,用于返回字符串类型的数据,实现了REST API*/
 @RestController
 public class HelloController {
 
