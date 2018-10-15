@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-/*返回的信息进行统一异常处理,补获controller层的异常,然后分类进行异常处理*/
+/*返回的信息进行统一异常处理,捕获controller层的异常,然后分类进行异常处理*/
 @Slf4j
 @ControllerAdvice
 public class ExceptionHandle {
