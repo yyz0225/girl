@@ -2,19 +2,21 @@ package com.yyz.girl.domains;
 
 import lombok.Data;
 
-/**
- * Http请求返回的最外层对象
- */
 @Data
+/**
+ *  Http请求返回的最外层对象
+ * @Author: yyz
+ * @Date: 2018/11/1 13:54
+ */
 public class Result<T> {
 
-    /*错误码*/
+    /**错误码*/
     private  Integer code;
 
-    /*提示信息*/
+    /**提示信息*/
     private String msg;
 
-    /*返回的具体内容,是一个泛型*/
+    /**返回的具体内容,是一个泛型*/
     private T data;
 
   /*  public Integer getCode() {

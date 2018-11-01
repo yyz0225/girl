@@ -2,6 +2,10 @@ package com.yyz.girl.utils;
 
 import com.yyz.girl.domains.Result;
 
+/**
+ * @author : yyz
+ * @date : 20181101
+ */
 public class ResultUtil {
 
     public static Result success(Object obj){

@@ -5,6 +5,10 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
 
+/**
+ * @author : yyz
+ * @date : 20181101
+ */
 @SpringBootApplication
 public class GirlApplication extends SpringBootServletInitializer{
 

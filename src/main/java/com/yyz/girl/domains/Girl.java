@@ -9,6 +9,8 @@ import javax.validation.constraints.Min;
 
 /**
  * lombok的@Data注解用于优化项目中的getter,setter,toString,equasl等方法,增加代码的维护性
+ * @Author: yyz
+ * @Date: 2018/11/1 13:54
  */
 @Data
 @Entity

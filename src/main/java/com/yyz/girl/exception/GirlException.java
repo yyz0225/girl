@@ -6,6 +6,8 @@ import lombok.Setter;
 
 /**
  * 自定义异常,用于统一异常处理
+ * @author : yyz
+ * @date : 20181101
  */
 public class GirlException extends RuntimeException{
     @Getter
