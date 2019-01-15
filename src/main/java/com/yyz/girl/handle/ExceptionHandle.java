@@ -1,6 +1,6 @@
 package com.yyz.girl.handle;
 
-import com.yyz.girl.domains.Result;
+import com.yyz.girl.entity.Result;
 import com.yyz.girl.exception.GirlException;
 import com.yyz.girl.utils.ResultUtil;
 import lombok.extern.slf4j.Slf4j;

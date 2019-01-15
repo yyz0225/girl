@@ -1,6 +1,6 @@
 package com.yyz.girl.utils;
 
-import com.yyz.girl.domains.Result;
+import com.yyz.girl.entity.Result;
 
 /**
  * @author : yyz

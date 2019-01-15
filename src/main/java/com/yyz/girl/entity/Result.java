@@ -1,4 +1,4 @@
-package com.yyz.girl.domains;
+package com.yyz.girl.entity;
 
 import lombok.Data;
 

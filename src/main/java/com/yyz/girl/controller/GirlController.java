@@ -1,11 +1,12 @@
 package com.yyz.girl.controller;
 
-import com.yyz.girl.domains.Girl;
-import com.yyz.girl.domains.Result;
-import com.yyz.girl.repository.GirlRepository;
+import com.yyz.girl.entity.Girl;
+import com.yyz.girl.entity.Result;
 import com.yyz.girl.service.GirlService;
 import com.yyz.girl.utils.ResultUtil;
 import lombok.extern.java.Log;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.StringUtils;
 import org.springframework.validation.BindingResult;
@@ -21,18 +22,17 @@ import javax.validation.Valid;
 @RestController
 public class GirlController {
 
-    //public static final Logger LOGGER= LoggerFactory.getLogger(GirlController.class);
+    public static final Logger LOGGER= LoggerFactory.getLogger(GirlController.class);
 
-    @Autowired
-    private GirlRepository girlReposiorty;
     @Autowired
     private GirlService girlService;
 
     /**获取所有的女生列表 get方式*/
     @GetMapping(value="/girls")
     public Result<Girl> girlList(){
-       return ResultUtil.success(girlReposiorty.findAll());
+       return ResultUtil.success(girlService.findAll());
     }
+
     /**新建一个女生 POST方式 增加表单验证
     * Girl girl创建一个对象,保证代码的简洁性
     * */
@@ -45,18 +45,20 @@ public class GirlController {
         girl.setCupSize(girl.getCupSize());
         girl.setAge(girl.getAge());
 
-        Girl girlResult= girlReposiorty.save(girl);
+        Girl girlResult= girlService.save(girl);
         if(!StringUtils.isEmpty(girlResult)){
             return ResultUtil.success(girlResult);
         }
         return null;
     }
+
     /**通过ID查询女生信息*/
     @GetMapping(value = "/girls/{id}")
     public Result<Girl> find(@PathVariable("id")Integer id){
         log.info("find");
-       Girl girl= girlReposiorty.findById(id).get();
-      return  ResultUtil.success(girl);
+       Girl girl= girlService.findById(id);
+        LOGGER.debug("method:{},param:{},result:{}",new Object[]{"find",id,girl});
+        return  ResultUtil.success(girl);
     }
     /**通过ID更新女生信息*/
     @PutMapping(value = "/girls/{id}")
@@ -65,18 +67,18 @@ public class GirlController {
         girl.setId(id);
         girl.setCupSize(cupSize);
         girl.setAge(age);
-        return ResultUtil.success(girlReposiorty.save(girl));
+        return ResultUtil.success(girlService.save(girl));
     }
     /**通过ID删除女生信息*/
     @DeleteMapping(value = "/girls/{id}")
     public Result<Girl>  delete(@PathVariable("id") Integer id){
-        girlReposiorty.deleteById(id);
+        girlService.deleteById(id);
         return ResultUtil.success();
     }
     /**通过年龄查询女生信息*/
     @GetMapping(value = "/girls/find/{age}")
     public Result<Girl> findByAge(@PathVariable("age")Integer age){
-       return ResultUtil.success(girlReposiorty.findByAge(age));
+       return ResultUtil.success(girlService.findByAge(age));
     }
 
     /**同时插入两条记录*/
