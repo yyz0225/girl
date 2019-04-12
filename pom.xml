@@ -34,12 +34,12 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
 			<!--移除嵌入式tomcat插件-->
-			<exclusions>
+			<!--<exclusions>
 				<exclusion>
 					<groupId>org.springframework.boot</groupId>
 					<artifactId>spring-boot-starter-tomcat</artifactId>
 				</exclusion>
-			</exclusions>
+			</exclusions>-->
 		</dependency>
 
 		<dependency>
@@ -78,12 +78,19 @@
 			<version>${junit.version}</version>
 		</dependency>
 		<!--添加第三方tomcat的servlet-api依赖-->
-		<dependency>
+		<!--<dependency>
 			<groupId>javax.servlet</groupId>
 			<artifactId>javax.servlet-api</artifactId>
 			<version>3.1.0</version>
 			<scope>provided</scope>
+		</dependency>-->
+		<!--添加freemarker依赖-->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-freemarker</artifactId>
+			<version>2.0.3.RELEASE</version>
 		</dependency>
+
 	</dependencies>
 
 	<!--spring boot添加不同的maven编译环境,配置profiles-->
@@ -93,6 +100,7 @@
 			<properties>
 				<jar.source>${java.version}</jar.source>
 				<jar.target>${java.version}</jar.target>
+				<env>prod</env>
 			</properties>
 		</profile>
 		<profile>
@@ -100,6 +108,7 @@
 			<properties>
 				<jar.source>${java.version}</jar.source>
 				<jar.target>${java.version}</jar.target>
+				<env>dev</env>
 			</properties>
 		</profile>
 	</profiles>
@@ -114,6 +123,7 @@
 					<fork>true</fork>
 				</configuration>-->
 			</plugin>
+			<!--添加maven编译依赖,解决使用更高版本的diamond运算符问题-->
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
@@ -122,6 +132,58 @@
 					<target>${jar.target}</target>
 					<encoding>utf-8</encoding>
 				</configuration>
+			</plugin>
+			<!--添加maven-surefire-plugin插件-->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<configuration>
+					<skip>true</skip>
+				</configuration>
+			</plugin>
+			<!--添加war包部署依赖-->
+			<!--<plugin>
+				<artifactId>maven-war-plugin</artifactId>
+				<version>3.2.0</version>
+				<configuration>
+					<failOnMissingWebXml>false</failOnMissingWebXml>
+				</configuration>
+			</plugin>-->
+
+			<!--不同环境打包不同的配置文件依赖插件-->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-resources-plugin</artifactId>
+				<version>2.6</version>
+				<executions>
+					<execution>
+						<id>copy-resources</id>
+						<!--存放不同环境的配置文件若在src/main/resources目录下,则使用complie阶段,否则一般使用validate-->
+						<phase>validate</phase>
+						<!--资源文件处理resources目录下时,使用compile阶段,因为测试发现resources下的资源在validate之后compile之前拷贝,为了保证
+						指定环境的资源文件在resources拷贝之后执行-->
+						<!--<phase>compile</phase>-->
+						<goals>
+							<goal>copy-resources</goal>
+						</goals>
+						<configuration>
+							<!--强制覆盖原有文件-->
+							<overwrite>true</overwrite>
+							<!--输出文件目录-->
+							<outputDirectory>${project.build.outputDirectory}</outputDirectory>
+							<!--各个环境打包的资源-->
+							<resources>
+								<resource>
+									<!--指定需要处理的资源文件目录-->
+									<directory>src/main/deploy/${env}</directory>
+									<!--资源文件处理resources目录下时-->
+									<!--<directory>src/main/resources/deploy/${env}</directory>-->
+									<filter>false</filter>
+								</resource>
+							</resources>
+						</configuration>
+					</execution>
+				</executions>
 			</plugin>
 		</plugins>
 	</build>

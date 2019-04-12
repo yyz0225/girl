@@ -34,5 +34,4 @@ public class HelloController {
     public String cup(){
         return "cup:"+girlProperties.getCupSize()+",age:"+girlProperties.getAge();
     }
-
 }
