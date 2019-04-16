@@ -1,5 +1,5 @@
 server:
-  port: 8089
+  port: 8080
   servlet:
     context-path: /girl
 cupSize: B
@@ -9,4 +9,4 @@ name: ll
 content: "cupSize:${cupSize},age:${age}"
 girl:
   cupsize: F
-  age: 18
+  age: 19

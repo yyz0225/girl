@@ -6,7 +6,7 @@
 	<groupId>com.yyz</groupId>
 	<artifactId>girl</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<packaging>war</packaging>
+	<packaging>${packaging.env}</packaging>
 
 	<name>girl</name>
 	<description>Demo project for Spring Boot</description>
@@ -96,20 +96,49 @@
 	<!--spring boot添加不同的maven编译环境,配置profiles-->
 	<profiles>
 		<profile>
-			<id>prod</id>
-			<properties>
-				<jar.source>${java.version}</jar.source>
-				<jar.target>${java.version}</jar.target>
-				<env>prod</env>
-			</properties>
-		</profile>
-		<profile>
 			<id>dev</id>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>
 			<properties>
+				<packaging.env>jar</packaging.env>
 				<jar.source>${java.version}</jar.source>
 				<jar.target>${java.version}</jar.target>
 				<env>dev</env>
 			</properties>
+			<build>
+				<resources>
+					<resource>
+						<directory>src/main/resources</directory>
+						<filtering>true</filtering>
+						<excludes>
+							<exclude>application.yml</exclude>
+							<exclude>application-${env}.yml</exclude>
+						</excludes>
+					</resource>
+				</resources>
+			</build>
+		</profile>
+		<profile>
+			<id>prod</id>
+			<properties>
+				<packaging.env>war</packaging.env>
+				<jar.source>${java.version}</jar.source>
+				<jar.target>${java.version}</jar.target>
+				<env>prod</env>
+			</properties>
+			<build>
+				<resources>
+					<resource>
+						<directory>src/main/resources</directory>
+						<filtering>true</filtering>
+						<excludes>
+							<exclude>application.yml</exclude>
+							<exclude>application-${env}.yml</exclude>
+						</excludes>
+					</resource>
+				</resources>
+			</build>
 		</profile>
 	</profiles>
 	<build>
@@ -134,21 +163,21 @@
 				</configuration>
 			</plugin>
 			<!--添加maven-surefire-plugin插件-->
-			<plugin>
+			<!--<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-surefire-plugin</artifactId>
 				<configuration>
 					<skip>true</skip>
 				</configuration>
-			</plugin>
+			</plugin>-->
 			<!--添加war包部署依赖-->
-			<!--<plugin>
+			<plugin>
 				<artifactId>maven-war-plugin</artifactId>
 				<version>3.2.0</version>
 				<configuration>
 					<failOnMissingWebXml>false</failOnMissingWebXml>
 				</configuration>
-			</plugin>-->
+			</plugin>
 
 			<!--不同环境打包不同的配置文件依赖插件-->
 			<plugin>
@@ -178,7 +207,7 @@
 									<directory>src/main/deploy/${env}</directory>
 									<!--资源文件处理resources目录下时-->
 									<!--<directory>src/main/resources/deploy/${env}</directory>-->
-									<filter>false</filter>
+									<filtering>false</filtering>
 								</resource>
 							</resources>
 						</configuration>
