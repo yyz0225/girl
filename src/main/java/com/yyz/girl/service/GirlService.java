@@ -14,6 +14,7 @@ import java.util.List;
  * @Author: yyz
  * @Date: 2018/11/1 13:54
  */
+@SuppressWarnings({"ALL", "AlibabaUndefineMagicConstant"})
 @Service
 public class GirlService {
 
@@ -45,6 +46,7 @@ public class GirlService {
         //1.先查询出这个Girl对象
         Girl girl = girlDao.findById(id).get();
         //2.判断年龄大小,返回结果
+        //noinspection AlibabaUndefineMagicConstant
         if (girl.getAge() < 10) {
             //你还在上小学吧,,, code:100
             throw new GirlException(ResultEnum.PRIMARY_SCHOOL);

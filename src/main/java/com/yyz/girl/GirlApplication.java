@@ -4,11 +4,13 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
+import org.springframework.context.annotation.EnableAspectJAutoProxy;
 
 /**
  * @author : yyz
  * @date : 20181101
  */
+@EnableAspectJAutoProxy //使用aspectJ自动代理
 @SpringBootApplication
 public class GirlApplication extends SpringBootServletInitializer{
 

@@ -27,6 +27,12 @@ public class HttpAspect {
     @Pointcut("execution(public * com.yyz.girl.controller.GirlController.*(..))")
     public void log(){ }
 
+    /*advice:   符合point cut规则的joinPoint的一段代码,模拟为一个interceptor拦截器
+    * 例如 HTTP 鉴权的实现, 我们可以为每个使用 RequestMapping 标注的方法织入 advice, 当 HTTP 请求到来时, 首先进入到 advice 代码中,
+    * 在这里我们可以分析这个 HTTP 请求是否有相应的权限, 如果有, 则执行 Controller, 如果没有, 则抛出异常.
+    * 这里的 advice 就扮演着鉴权拦截器的角色了.
+    *
+    * */
     @Before("log()")
     public void doBefore(JoinPoint joinPoint){
         log.info("11111111111");
