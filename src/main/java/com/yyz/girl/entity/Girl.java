@@ -2,9 +2,7 @@ package com.yyz.girl.entity;
 
 import lombok.Data;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 import javax.validation.constraints.Min;
 
 /**
@@ -14,6 +12,7 @@ import javax.validation.constraints.Min;
  */
 @Data
 @Entity
+@NamedNativeQuery(name = "Girl.findByAge2",query = "select girl from Girl girl where girl.age = ?1 ")
 public class Girl {
     @Id
     @GeneratedValue
@@ -24,6 +23,13 @@ public class Girl {
     @Min(value = 18,message = "未成年少女禁止入内!")
     private Integer age;
 
+    public Girl() {
+    }
+
+    public Girl(String cupSize, @Min(value = 18, message = "未成年少女禁止入内!") Integer age) {
+        this.cupSize = cupSize;
+        this.age = age;
+    }
 
     /*public Integer getId() {
         return id;

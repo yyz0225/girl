@@ -33,7 +33,7 @@ public class AuthCheckAspect {
 
         // 检查用户所传递的 token 是否合法
         String token = getUserToken(request);
-        if (!token.equalsIgnoreCase("123456")) {
+        if (!"123456".equalsIgnoreCase(token)) {
             return "错误, 权限不合法!";
         }
 
@@ -46,7 +46,7 @@ public class AuthCheckAspect {
             return "";
         }
         for (Cookie cookie : cookies) {
-            if (cookie.getName().equalsIgnoreCase("user_token")) {
+            if ("user_token".equalsIgnoreCase(cookie.getName())) {
                 return cookie.getValue();
             }
         }

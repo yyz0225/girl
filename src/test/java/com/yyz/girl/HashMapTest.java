@@ -62,11 +62,11 @@ public class HashMapTest {
         });
 
         /*java8 使用lambda表达式实现*/
-        Collections.sort(entryList,(Map.Entry<Integer, User> o1, Map.Entry<Integer, User> o2) -> o2.getValue().getAge()-o1.getValue().getAge());
+       /* Collections.sort(entryList,(Map.Entry<Integer, User> o1, Map.Entry<Integer, User> o2) -> o2.getValue().getAge()-o1.getValue().getAge());
 
-        /*java8 使用lambda表达式实现 简易写法*/
+        *//*java8 使用lambda表达式实现 简易写法*//*
         entryList.sort((Map.Entry<Integer, User> o1, Map.Entry<Integer, User> o2) -> o2.getValue().getAge()-o1.getValue().getAge());
-
+*/
         //遍历entryList集合,把排序后的结果集放入linkedHashMap中
         for(Map.Entry<Integer,User> entry : entryList){
             linkedHashMap.put(entry.getKey(),entry.getValue());

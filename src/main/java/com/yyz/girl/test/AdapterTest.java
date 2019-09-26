@@ -32,5 +32,13 @@ public class AdapterTest {
         * join()可与控制线程的执行顺序问题，对于主线程和子线程的优先执行同样适用。
 
         * */
+        int a=5;
+        setA(a);
+        System.out.println(a);
+
+    }
+
+    private static void setA(int a) {
+        a=9;
     }
 }
