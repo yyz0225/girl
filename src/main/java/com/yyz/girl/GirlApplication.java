@@ -21,6 +21,21 @@ public class GirlApplication extends SpringBootServletInitializer{
 	}
 
 	public static void main(String[] args) {
-		SpringApplication.run(GirlApplication.class, args);
+		//SpringApplication.run(GirlApplication.class, args);
+		/**
+		 * 启动类添加应用开始监听器,并禁用banner显示
+		 */
+		SpringApplication springApplication = new SpringApplication(GirlApplication.class);
+		springApplication.addListeners(
+				new MyApplicationReadyEventListener(),
+				new MyApplicationStartingEventListener(),
+				new MyApplicationEnvironmentPreparedEventListener(),
+				new MyApplicationPreparedEventListener(),
+				new MyApplicationFailedEventListener(),
+				new MyApplicationStartedEventListener());
+		/*springApplication.addListeners(new MyApplicationStartingEventListener());
+		springApplication.addListeners(new MyApplicationStartedEventListener());*/
+		//springApplication.setBannerMode(Banner.Mode.OFF);
+		springApplication.run(args);
 	}
 }
