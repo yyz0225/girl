@@ -19,7 +19,7 @@ public class HelloFreemarkerController {
     @GetMapping(value = "/hello")
     public String helloFreemarker(Model model){
         model.addAttribute("freemarker","hello freemarker!");
-        return "ftl/hello";
+        return "hello";
     }
 
     @GetMapping(value = "/111")

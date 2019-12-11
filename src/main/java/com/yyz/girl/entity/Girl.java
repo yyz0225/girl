@@ -12,7 +12,9 @@ import javax.validation.constraints.Min;
  */
 @Data
 @Entity
+/*
 @NamedNativeQuery(name = "Girl.findByAge2",query = "select girl from Girl girl where girl.age = ?1 ")
+*/
 public class Girl {
     @Id
     @GeneratedValue

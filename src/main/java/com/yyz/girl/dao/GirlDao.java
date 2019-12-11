@@ -5,7 +5,6 @@ import com.yyz.girl.entity.Girl;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.repository.query.Param;
 
 import javax.transaction.Transactional;
 import java.util.List;
@@ -46,8 +45,8 @@ public interface GirlDao extends JpaRepository<Girl,Integer>{
     @Query("select girl from Girl girl where girl.cupSize = ?1")
     Girl findByCupSize2(String cupSize);
 
-    @Query("select girl from Girl girl where girl.cupSize = : cupSize")
-    Girl findByCupSize3(@Param("cupSize") String cupSize);
+    /*@Query("select girl from Girl girl where girl.cupSize = : cupSize")
+    Girl findByCupSize3(@Param("cupSize") String cupSize);*/
     /**
      * 1）直接创建Sort对象，适合对单一属性做排序
      *    eg: Sort sort = new Sort(Sort.Direction.DESC,"id");
