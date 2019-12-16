@@ -3,15 +3,19 @@ package com.yyz.girl;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
+import org.springframework.boot.web.servlet.ServletComponentScan;
 import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
 import org.springframework.context.annotation.EnableAspectJAutoProxy;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 /**
  * @author : yyz
  * @date : 20181101
  */
 @EnableAspectJAutoProxy //使用aspectJ自动代理
+@EnableTransactionManagement //spring boot开启事务支持
 @SpringBootApplication
+@ServletComponentScan("com.yyz.girl.filter")
 public class GirlApplication extends SpringBootServletInitializer{
 
 	@Override
