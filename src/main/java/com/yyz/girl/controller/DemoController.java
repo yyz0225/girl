@@ -15,6 +15,10 @@ public class DemoController {
         return "服务一切正常";
     }
 
+    /**
+     * 利用aop实现http接口鉴权,根据用户是否携带token来判断
+     * @return
+     */
     @AuthChecker
     @RequestMapping("/aop/http/user_info")
     public String callSomeInterface() {

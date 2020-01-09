@@ -21,7 +21,7 @@ logging:
   path: /user/local/log
   level:
     com:
-      favorites: DEBUG
+      yyz: DEBUG
     org:
       springframework:
         web: INFO

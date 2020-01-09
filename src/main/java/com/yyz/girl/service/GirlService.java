@@ -44,7 +44,7 @@ public class GirlService {
     public Girl getAge(Integer id) {
 
         //1.先查询出这个Girl对象
-        Girl girl = girlDao.findById(id).get();
+        Girl girl = girlDao.findOne(id);
         //2.判断年龄大小,返回结果
         //noinspection AlibabaUndefineMagicConstant
         if (girl.getAge() < 10) {
@@ -83,7 +83,7 @@ public class GirlService {
      * @return
      */
     public Girl findById(Integer id) {
-        return girlDao.findById(id).get();
+        return girlDao.findOne(id);
     }
 
     /**
@@ -92,7 +92,7 @@ public class GirlService {
      * @param id
      */
     public void deleteById(Integer id) {
-        girlDao.deleteById(id);
+        girlDao.findOne(id);
     }
 
     /**
