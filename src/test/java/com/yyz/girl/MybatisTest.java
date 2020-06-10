@@ -3,6 +3,7 @@ package com.yyz.girl;
 import com.yyz.girl.dao.UserMapper;
 import com.yyz.girl.entity.User;
 import lombok.extern.java.Log;
+import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -26,7 +27,7 @@ public class MybatisTest {
     @Test
     public void queryUserByUserIdTest(){
         User user = userMapper.queryUserById(1);
-        System.out.println(user);
+        Assert.assertNull(user);
     }
 
 }

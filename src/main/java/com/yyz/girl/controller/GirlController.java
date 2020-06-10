@@ -8,6 +8,7 @@ import lombok.extern.java.Log;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.util.StringUtils;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
@@ -39,7 +40,7 @@ public class GirlController {
     @PostMapping(value = "/girls")
     public Result<Girl> createGirl(@Valid Girl girl, BindingResult bindingResult){
         if (bindingResult.hasErrors()){
-            System.out.println(bindingResult.getFieldError().getDefaultMessage());
+            LOGGER.error(bindingResult.getFieldError().getDefaultMessage());
             return ResultUtil.error(1,bindingResult.getFieldError().getDefaultMessage());
         }
         girl.setCupSize(girl.getCupSize());
@@ -90,7 +91,8 @@ public class GirlController {
 
     /**通过年龄获取girl信息*/
     @GetMapping(value ="/girls/getAge/{id}")
-    public Result<Girl> getAge(@PathVariable Integer id) throws Exception{
+    @Cacheable(value = "user-key")
+    public Result<Girl> getAge(@PathVariable Integer id) throws Exception {
         return ResultUtil.success(girlService.getAge(id));
     }
 }

@@ -4,6 +4,9 @@ import com.yyz.girl.annotitaion.AuthChecker;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.servlet.http.HttpSession;
+import java.util.UUID;
+
 /**
  * @Author: yyz
  * @Date: 2019/5/9 14:53
@@ -23,5 +26,15 @@ public class DemoController {
     @RequestMapping("/aop/http/user_info")
     public String callSomeInterface() {
         return "调用了 user_info 接口.";
+    }
+
+    @RequestMapping("/uid")
+    public String uid(HttpSession session) {
+        UUID uid = (UUID) session.getAttribute("uid");
+        if (uid == null) {
+            uid = UUID.randomUUID();
+        }
+        session.setAttribute("uid", uid);
+        return session.getId();
     }
 }
