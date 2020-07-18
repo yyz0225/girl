@@ -3,13 +3,16 @@ package com.yyz.girl;
 import com.yyz.girl.entity.User;
 import org.junit.Test;
 
+import java.io.*;
 import java.util.*;
 
 /**
  * @Author: yyz
  * @Date: 2019/4/17 9:28
  */
-public class HashMapTest {
+public class HashMapTest implements Testa {
+
+    private static int frood;
 
     /**
      * 对HashMap进行排序
@@ -36,8 +39,19 @@ public class HashMapTest {
         list2.add("A");
         list2.add("B");
 
-        list1.removeAll(list2);
+        //list1.removeAll(list2);
         System.out.println(list1);
+        String[] list1Array = list1.toArray(new String[list1.size()]);
+        System.out.println("List转数组:"+list1Array);
+        List<String> arrayList = Arrays.asList(list1Array);
+        System.out.println("数组转List:"+arrayList);
+        //List转数组获取到的是一个只读的List,不能添加和删除元素,如果添加和删除操作,会报UnsupportedOperationException异常
+        List<String> arrayList2 = new ArrayList<>(arrayList);
+        arrayList2.add("C");
+        System.out.println("数组添加元素:"+arrayList2);
+        System.out.println(++frood);
+        String string= "hello word **";
+        System.out.println(allRotate(string));
     }
 
     /**
@@ -73,4 +87,119 @@ public class HashMapTest {
         }
         return linkedHashMap;
     }
+
+    @Test
+    public void d() throws UnsupportedEncodingException {
+        // 原始的字符串
+        String wholeWord = "oneofthecentralresultsofairesearchinthe1970swasthattoachievegoodperformanceaisystemsmusthavelargeamountsofknowledgeknowledgeispowertheslogangoeshumansclearlyusevastamountsofknowledgeandifaiistoachieveitslongtermgoalsaisystemsmustalsousevastamountssincehandcodinglargeamountsofknowledgeintoasystemisslowtediousanderrorpronemachinelearningtechniqueshavebeendevelopedtoautomaticallyacquireknowledgeoftenintheformofifthenrulesproductionsunfortunatelythishasoftenledtoautilityproblemminton1988bthelearninghascausedanoverallslowdowninthesystemforexampleinmanysystemslearnedrulesareusedtoreducethenumberofbasicstepsthesystemtakesinordertosolveproblemsbypruningthesystemssearchspaceforinstancebutinordertodetermineateachstepwhichrulesareapplicablethesystemmustmatchthemagainstitscurrentsituationusingcurrenttechniquesthematcherslowsdownasmoreandmorerulesareacquiredsoeachsteptakeslongerandlongerthisectcanoutweighthereductioninthenumberofstepstakensothatthenetresultisaslowdownthishasbeenobservedinseveralrecentsystemsminton1988aetzioni1990tambeetal1990cohen1990ofcoursetheproblemofslowdownfromincreasingmatchcostisnotrestrictedtosystemsinwhichthepurposeofrulesistoreducethenumberofproblemsolvingstepsasystemacquiringnewrulesforanypurposecanslowdowniftherulessignicantlyincreasethematchcostandintuitivelyoneexpectsthatthemoreproductionsthereareinasystemthehigherthetotalmatchcostwillbethethesisofthisresearchisthatwecansolvethisprobleminabroadclassofsystemsbyimprovingthematchalgorithmtheyuseinessenceouraimistoenablethescalingupofthenumberofrulesinproductionsystemsweadvancethestateoftheartinproductionmatchalgorithmsdevelopinganimprovedmatchalgorithmwhoseperformancescaleswellonasignicantlybroaderclassofsystemsthanexistingalgorithmsfurthermorewedemonstratethatbyusingthisimprovedmatchalgorithmwecanreduceoravoidtheutilityprobleminalargeclassofmachinelearningsystems";
+        // 已经统计过的词组
+        Set<String> countedWord = new HashSet<String>();
+       /* for (int i = 0; i < wholeWord.length() - 1; i++) {
+            String aWord = String.valueOf(wholeWord.charAt(i))
+                    + String.valueOf(wholeWord.charAt(i + 1));
+            // 忽略空格
+            if (aWord.contains(" ")) {
+                continue;
+            }
+            // 忽略已统计的词组
+            if (countedWord.contains(aWord)) {
+                continue;
+            }
+            String copyOfWholeWord = new String(wholeWord);
+            // 出现的次数
+            int repeatedTime = 0;
+            while (copyOfWholeWord.indexOf(aWord) != -1) {
+                repeatedTime++;
+                copyOfWholeWord = copyOfWholeWord.substring(copyOfWholeWord.indexOf(aWord) + aWord.length());
+            }
+            if (repeatedTime > 1) {
+                System.out.println("词组[" + aWord + "]出现的次数为：" + repeatedTime);
+            }
+            countedWord.add(aWord);*/
+    }
+    /**
+     * 给予字符串是类似于网址：www.baidu.com    www.sina.com.cn
+     * 将给与的字符串按照规则反转 com.baidu.www    cn.com.sina.www
+     * @param str
+     * @return
+     */
+    public static String allRotate(String str){
+        int strLength = str.length();
+        char[] chars = str.toCharArray();
+        int left = 0;
+        // 先局部反转
+        for (int i = 0; i < strLength; i++){
+            if (chars[i] == ' '){
+                Rotate(chars, left, i-1);
+                left = i + 1;
+            }
+        }
+        Rotate(chars, left, strLength-1);  // 最后一小段反转
+        Rotate(chars,0,strLength-1);  // 整体反转
+        return new String(chars);
+    }
+    public static void Rotate(char[] chars, int start, int end){
+        while (start < end){
+            char temp = chars[start];
+            chars[start] = chars[end];
+            chars[end] = temp;
+            start++;
+            end--;
+        }
+    }
+
+
+    /**
+     * 自定义文件名,实现文件复制
+     *
+     * @param src  源文件的路径
+     * @param desc 目标文或文件夹的路径
+     * @throws FileNotFoundException
+     */
+    public static void copyfile(File src, File desc) throws FileNotFoundException {
+        String str;
+        FileReader fr;
+        FileWriter fw;
+        BufferedReader br = null;
+        BufferedWriter bw = null;
+        //判断文件路径是否正确是否是文件和文件夹
+        if (src == null || desc == null || src.isDirectory() || desc.isFile()) {
+            throw new FileNotFoundException("文件参数错误!");//抛出异常
+        } else {
+            if (!desc.exists()) desc.mkdirs();//如果目标地址没有文件夹则创建文件夹
+            File file = new File(desc.getPath() + File.separator + src.getName());//创建目标文件路径和文件名的对象
+            try {
+                file.createNewFile();//创建文件
+            } catch (IOException e1) {
+                e1.printStackTrace();
+            }
+            try {
+                fr = new FileReader(src);
+                fw = new FileWriter(desc);
+                br = new BufferedReader(fr);
+                bw = new BufferedWriter(fw);
+                while ((str = br.readLine()) != null) {
+                    bw.write(str);
+                    bw.newLine();
+                }
+            } catch (FileNotFoundException e) {
+            } catch (IOException e) {
+            } finally {
+                try {
+                    //首先关闭的是bw.flush()
+                    bw.flush();
+                    br.close();
+                    bw.close();
+                } catch (IOException e) {
+                }
+
+            }
+
+        }
+    }
+
+}
+
+ interface Testa{
+    int frood=42;
 }

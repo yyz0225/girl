@@ -21,6 +21,7 @@ import java.lang.reflect.Method;
  * @Author: yyz
  * @Date: 2020/1/9 16:17
  * 添加cache的配置类
+ * EnableCaching注解开启缓存
  */
 @Configuration
 @EnableCaching

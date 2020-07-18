@@ -122,6 +122,13 @@
 			<version>1.2.0</version>
 		</dependency>
 
+		<!--导入配置文件依赖,添加配置文件时会有提示信息-->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-configuration-processor</artifactId>
+			<optional>true</optional>
+		</dependency>
+
 	</dependencies>
 
 	<!--spring boot添加不同的maven编译环境,配置profiles-->
