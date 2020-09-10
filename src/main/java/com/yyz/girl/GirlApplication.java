@@ -41,6 +41,10 @@ public class GirlApplication extends SpringBootServletInitializer {
 		/*springApplication.addListeners(new MyApplicationStartingEventListener());
 		springApplication.addListeners(new MyApplicationStartedEventListener());*/
 		//springApplication.setBannerMode(Banner.Mode.OFF);
+
+		/*springBoot屏蔽命令行访问属性的设置*/
+		springApplication.setAddCommandLineProperties(false);
+
 		springApplication.run(args);
 	}
 }

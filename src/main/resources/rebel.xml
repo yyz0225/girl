@@ -11,4 +11,11 @@
 		</dir>
 	</classpath>
 
+	<web>
+		<link target="/">
+			<dir name="D:/workspace/girl/src/main/webapp">
+			</dir>
+		</link>
+	</web>
+
 </application>

@@ -1,4 +1,4 @@
-package com.yyz.girl;
+package com.yyz.girl.utils;
 
 import org.apache.tomcat.util.codec.binary.Base64;
 import org.springframework.util.StringUtils;
@@ -10,10 +10,9 @@ import javax.crypto.spec.SecretKeySpec;
 import java.security.SecureRandom;
 
 /**
- * @Author guxiong
- * @Date 2019/1/24 10:32
- * @Description 加密解密
- **/
+ * @author yyz
+ * AES加密解密工具类
+ */
 public class AesUtil {
 
     private static final String ALGORITHMSTR = "AES/ECB/PKCS5Padding";

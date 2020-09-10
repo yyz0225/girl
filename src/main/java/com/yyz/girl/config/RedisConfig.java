@@ -1,3 +1,4 @@
+/*
 package com.yyz.girl.config;
 
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
@@ -17,12 +18,14 @@ import org.springframework.data.redis.serializer.Jackson2JsonRedisSerializer;
 
 import java.lang.reflect.Method;
 
+*/
 /**
  * @Author: yyz
  * @Date: 2020/1/9 16:17
  * 添加cache的配置类
  * EnableCaching注解开启缓存
- */
+ *//*
+
 @Configuration
 @EnableCaching
 public class RedisConfig extends CachingConfigurerSupport {
@@ -65,3 +68,4 @@ public class RedisConfig extends CachingConfigurerSupport {
     }
 
 }
+*/

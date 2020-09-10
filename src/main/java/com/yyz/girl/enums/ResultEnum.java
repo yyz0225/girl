@@ -12,21 +12,26 @@ import lombok.Getter;
 public enum ResultEnum {
 
     /**
-     *UNKNOWN_ERROR
+     * UNKNOWN_ERROR
      */
-    UNKNOWN_ERROR(-1,"未知错误"),
+    UNKNOWN_ERROR(-1, "未知错误"),
     /**
-     *SUCCESS
+     * SUCCESS
      **/
-    SUCCESS(0,"OK"),
+    SUCCESS(1, "OK"),
+    /**
+     * error
+     */
+    ERROR(0, "error"),
+
     /**
      * PRIMARY_SCHOOL
      */
-    PRIMARY_SCHOOL(100,"你还在上小学吧,,"),
+    PRIMARY_SCHOOL(100, "你还在上小学吧,,"),
     /**
      * MIDDLE_SCHOOL
      */
-    MIDDLE_SCHOOL(101,"你怕是还在上初中哦.."),
+    MIDDLE_SCHOOL(101, "你怕是还在上初中哦.."),
     ;
 
     @Getter

@@ -6,19 +6,17 @@ import org.aspectj.lang.annotation.*;
 import org.springframework.stereotype.Component;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
-
 import javax.servlet.http.HttpServletRequest;
 
-
-
-//@Log4j2
-@Slf4j
-@Aspect
-@Component /**component注入引入spring容器里*/
-/**AOP统一登录日志拦截处理
+/**
  * @Author: yyz
  * @Date: 2018/11/1 13:54
+ * AOP统一登录日志拦截处理
+ * component注解引入spring容器里
  */
+@Slf4j
+@Aspect
+@Component
 public class HttpAspect {
 
     //public static final Logger LOGGER= LoggerFactory.getLogger(HttpAspect.class);

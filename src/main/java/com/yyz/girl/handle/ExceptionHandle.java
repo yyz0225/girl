@@ -1,6 +1,7 @@
 package com.yyz.girl.handle;
 
 import com.yyz.girl.entity.Result;
+import com.yyz.girl.enums.ResultEnum;
 import com.yyz.girl.exception.GirlException;
 import com.yyz.girl.utils.ResultUtil;
 import lombok.extern.slf4j.Slf4j;
@@ -18,8 +19,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @ControllerAdvice
 public class ExceptionHandle {
 
-    //private static final Logger LOGGER= LoggerFactory.getLogger(ExceptionHandle.class);
-
     @ExceptionHandler(value = Exception.class)
     @ResponseBody
     public Result handle(Exception e){
@@ -28,7 +27,7 @@ public class ExceptionHandle {
             return ResultUtil.error(girlException.getCode(),girlException.getMessage());
         }else {
             log.error("【系统异常】{}",e);
-            return ResultUtil.error(-1,"未知错误");
+            return ResultUtil.error(ResultEnum.UNKNOWN_ERROR.getCode(),ResultEnum.UNKNOWN_ERROR.getMsg());
         }
     }
 }

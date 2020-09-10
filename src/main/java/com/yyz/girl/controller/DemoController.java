@@ -10,9 +10,11 @@ import java.util.UUID;
 /**
  * @Author: yyz
  * @Date: 2019/5/9 14:53
+ * aop实现http接口鉴权
  */
 @RestController
 public class DemoController {
+
     @RequestMapping("/aop/http/alive")
     public String alive() {
         return "服务一切正常";

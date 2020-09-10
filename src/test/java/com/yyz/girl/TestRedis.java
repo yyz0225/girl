@@ -1,3 +1,4 @@
+/*
 package com.yyz.girl;
 
 import com.yyz.girl.entity.User;
@@ -13,11 +14,13 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.concurrent.TimeUnit;
 
+*/
 /**
  * @Author: yyz
  * @Date: 2020/7/1 21:27\
  * 手动使用redis单元测试类
- */
+ *//*
+
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class TestRedis {
@@ -48,4 +51,4 @@ public class TestRedis {
         }
         // Assert.assertEquals("aa", operations.get("com.neo.f").getUserName());
     }
-}
+}*/
