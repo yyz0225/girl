@@ -3,6 +3,9 @@ package com.yyz.girl.enums;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
+import java.util.Arrays;
+import java.util.stream.Collectors;
+
 /**
  * lombok全参构造方法
  * @Author: yyz
@@ -35,21 +38,37 @@ public enum ResultEnum {
     ;
 
     @Getter
-    private Integer code;
+    private final Integer code;
 
     @Getter
-    private String msg;
+    private final String msg;
 
-    /*ResultEnum(Integer code, String msg) {
-        this.code = code;
-        this.msg = msg;
+
+    /**
+     * 根据枚举code获取msg
+     * @param code
+     * @return
+     */
+    public static String getMsg(Integer code){
+        ResultEnum[] values = ResultEnum.values();
+        for (ResultEnum value : values) {
+            if (value.getCode().equals(code)) {
+                return value.getMsg();
+            }
+        }
+        return null;
     }
 
-    public Integer getCode() {
-        return code;
+    /**
+     * java8下枚举获取值
+     * @param code
+     * @return
+     */
+    public static String getMsgNew(Integer code){
+        return Arrays.stream(ResultEnum.values())
+                .filter(resultEnum -> resultEnum.getCode().equals(code))
+                .map(ResultEnum::getMsg)
+                .collect(Collectors.joining());
     }
 
-    public String getMsg() {
-        return msg;
-    }*/
 }
