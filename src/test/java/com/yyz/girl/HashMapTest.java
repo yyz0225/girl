@@ -94,7 +94,7 @@ public class HashMapTest implements Testa {
         String wholeWord = "oneofthecentralresultsofairesearchinthe1970swasthattoachievegoodperformanceaisystemsmusthavelargeamountsofknowledgeknowledgeispowertheslogangoeshumansclearlyusevastamountsofknowledgeandifaiistoachieveitslongtermgoalsaisystemsmustalsousevastamountssincehandcodinglargeamountsofknowledgeintoasystemisslowtediousanderrorpronemachinelearningtechniqueshavebeendevelopedtoautomaticallyacquireknowledgeoftenintheformofifthenrulesproductionsunfortunatelythishasoftenledtoautilityproblemminton1988bthelearninghascausedanoverallslowdowninthesystemforexampleinmanysystemslearnedrulesareusedtoreducethenumberofbasicstepsthesystemtakesinordertosolveproblemsbypruningthesystemssearchspaceforinstancebutinordertodetermineateachstepwhichrulesareapplicablethesystemmustmatchthemagainstitscurrentsituationusingcurrenttechniquesthematcherslowsdownasmoreandmorerulesareacquiredsoeachsteptakeslongerandlongerthisectcanoutweighthereductioninthenumberofstepstakensothatthenetresultisaslowdownthishasbeenobservedinseveralrecentsystemsminton1988aetzioni1990tambeetal1990cohen1990ofcoursetheproblemofslowdownfromincreasingmatchcostisnotrestrictedtosystemsinwhichthepurposeofrulesistoreducethenumberofproblemsolvingstepsasystemacquiringnewrulesforanypurposecanslowdowniftherulessignicantlyincreasethematchcostandintuitivelyoneexpectsthatthemoreproductionsthereareinasystemthehigherthetotalmatchcostwillbethethesisofthisresearchisthatwecansolvethisprobleminabroadclassofsystemsbyimprovingthematchalgorithmtheyuseinessenceouraimistoenablethescalingupofthenumberofrulesinproductionsystemsweadvancethestateoftheartinproductionmatchalgorithmsdevelopinganimprovedmatchalgorithmwhoseperformancescaleswellonasignicantlybroaderclassofsystemsthanexistingalgorithmsfurthermorewedemonstratethatbyusingthisimprovedmatchalgorithmwecanreduceoravoidtheutilityprobleminalargeclassofmachinelearningsystems";
         // 已经统计过的词组
         Set<String> countedWord = new HashSet<String>();
-       /* for (int i = 0; i < wholeWord.length() - 1; i++) {
+        for (int i = 0; i < wholeWord.length() - 1; i++) {
             String aWord = String.valueOf(wholeWord.charAt(i))
                     + String.valueOf(wholeWord.charAt(i + 1));
             // 忽略空格
@@ -115,7 +115,8 @@ public class HashMapTest implements Testa {
             if (repeatedTime > 1) {
                 System.out.println("词组[" + aWord + "]出现的次数为：" + repeatedTime);
             }
-            countedWord.add(aWord);*/
+            countedWord.add(aWord);
+        }
     }
     /**
      * 给予字符串是类似于网址：www.baidu.com    www.sina.com.cn

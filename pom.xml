@@ -128,7 +128,12 @@
 			<artifactId>spring-boot-configuration-processor</artifactId>
 			<optional>true</optional>
 		</dependency>
-
+		<!--引人aop-log依赖,日志收集和处理工具包-->
+		<dependency>
+			<groupId>com.github.ealenxie</groupId>
+			<artifactId>aop-log</artifactId>
+			<version>2.1</version>
+		</dependency>
 	</dependencies>
 
 	<!--spring boot添加不同的maven编译环境,配置profiles-->
