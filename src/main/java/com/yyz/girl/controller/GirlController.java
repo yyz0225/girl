@@ -1,5 +1,6 @@
 package com.yyz.girl.controller;
 
+import com.yyz.girl.builder.Builder;
 import com.yyz.girl.entity.Girl;
 import com.yyz.girl.entity.Result;
 import com.yyz.girl.enums.ResultEnum;
@@ -77,7 +78,7 @@ public class GirlController {
      * @param id
      * @return
      */
-    @GetMapping(value = "/{id}")
+    @GetMapping(value = "/id/{id}")
     public Result getGirl(@PathVariable("id") Integer id) {
         if (id == null) {
             return ResultUtil.error(ResultEnum.ERROR.getCode(), "id不能为空!");
@@ -96,13 +97,13 @@ public class GirlController {
      * @param age
      * @return
      */
-    @PutMapping(value = "/{id}")
+    @PutMapping(value = "/id/{id}")
     public Result putGirl(@PathVariable("id") Integer id,@RequestParam("cupSize") String cupSize,@RequestParam("age") Integer age){
-
-        Girl girl=new Girl();
-        girl.setId(id);
-        girl.setCupSize(cupSize);
-        girl.setAge(age);
+        Girl girl = Builder.of(Girl::new)
+                .with(Girl::setId,id)
+                .with(Girl::setCupSize,cupSize)
+                .with(Girl::setAge,age)
+                .build();
 
         Girl girlResult = girlService.putGirl(girl);
         if (girlResult == null) {
@@ -136,7 +137,7 @@ public class GirlController {
      * @param id
      * @return
      */
-    @DeleteMapping(value = "/{id}")
+    @DeleteMapping(value = "/id/{id}")
     public Result deleteGirl(@PathVariable("id") Integer id){
         if (id == null) {
             return ResultUtil.error(ResultEnum.ERROR.getCode(),"删除失败!");
@@ -166,7 +167,7 @@ public class GirlController {
      * 同时插入两条记录
      * @return
      */
-    @PostMapping(value = "/girls/two")
+    @PostMapping(value = "/two")
     public Result<Girl> insertTwo(){
         girlService.insertTwo();
         return ResultUtil.success();

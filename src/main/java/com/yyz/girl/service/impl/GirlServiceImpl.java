@@ -1,5 +1,6 @@
 package com.yyz.girl.service.impl;
 
+import com.yyz.girl.builder.Builder;
 import com.yyz.girl.dao.GirlDao;
 import com.yyz.girl.entity.Girl;
 import com.yyz.girl.enums.ResultEnum;
@@ -28,14 +29,16 @@ public class GirlServiceImpl implements GirlService{
     @Override
     public void insertTwo() {
 
-        Girl girlA = new Girl();
-        girlA.setCupSize("B");
-        girlA.setAge(18);
+        Girl girlA = Builder.of(Girl::new)
+                .with(Girl::setCupSize,"B")
+                .with(Girl::setAge,18)
+                .build();
         girlDao.save(girlA);
 
-        Girl girlB = new Girl();
-        girlB.setCupSize("F");
-        girlB.setAge(24);
+        Girl girlB = Builder.of(Girl::new)
+                .with(Girl::setCupSize,"F")
+                .with(Girl::setAge,24)
+                .build();
         girlDao.save(girlB);
     }
 

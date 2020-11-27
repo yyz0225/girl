@@ -1,7 +1,6 @@
 package com.yyz.girl.enums;
 
 import lombok.AllArgsConstructor;
-import lombok.Getter;
 
 import java.util.Arrays;
 import java.util.stream.Collectors;
@@ -37,12 +36,24 @@ public enum ResultEnum {
     MIDDLE_SCHOOL(101, "你怕是还在上初中哦.."),
     ;
 
-    @Getter
-    private final Integer code;
+    private Integer code;
+    private String msg;
 
-    @Getter
-    private final String msg;
+    public Integer getCode() {
+        return code;
+    }
 
+    public void setCode(Integer code) {
+        this.code = code;
+    }
+
+    public String getMsg() {
+        return msg;
+    }
+
+    public void setMsg(String msg) {
+        this.msg = msg;
+    }
 
     /**
      * 根据枚举code获取msg
