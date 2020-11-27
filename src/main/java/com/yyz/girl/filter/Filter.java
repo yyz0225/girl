@@ -12,9 +12,12 @@ import java.io.IOException;
  */
 @WebFilter(filterName = "WebFilter",urlPatterns = "/web/*")
 public class Filter implements javax.servlet.Filter {
+
+    @Override
     public void destroy() {
     }
 
+    @Override
     public void doFilter(ServletRequest req, ServletResponse resp, FilterChain chain) throws ServletException, IOException {
         if (req instanceof HttpServletRequest) {
             HttpServletRequest request =(HttpServletRequest)req;
@@ -29,6 +32,7 @@ public class Filter implements javax.servlet.Filter {
         chain.doFilter(req, resp);
     }
 
+    @Override
     public void init(FilterConfig config){
 
     }
