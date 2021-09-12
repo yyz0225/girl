@@ -15,7 +15,7 @@ import java.lang.annotation.*;
  * ElementType.PARAMETER 参数上使用
  * ElementType.CONSTRUCTOR 构造器上使用
  *
- * RetentionPolicy.SOURCE java源文件中,编译器就丢弃
+ * RetentionPolicy.SOURCE java源文件中,编译期就丢弃
  * RetentionPolicy.CLASS 字节码文件中,JVM加载字节码文件时丢弃
  * RetentionPolicy.RUNTIME 程序运行期间一直存在
  */

@@ -13,15 +13,21 @@ import java.util.function.Supplier;
  */
 public class Builder<T> {
 
-    private final Supplier<T> instantiator;
+    private final Supplier<T> supplier;
     private List<Consumer<T>> modifiers = new ArrayList<>();
 
-    public Builder(Supplier<T> instantiator) {
-        this.instantiator = instantiator;
+    public Builder(Supplier<T> supplier) {
+        this.supplier = supplier;
     }
 
-    public static <T> Builder<T> of(Supplier<T> instantiator) {
-        return new Builder<>(instantiator);
+    /**
+     * 静态泛型方法应该使用其他类型和实例泛型方法区分
+     * @param supplier
+     * @param <K>
+     * @return
+     */
+    public static <K> Builder<K> of(Supplier<K> supplier) {
+        return new Builder<>(supplier);
     }
 
     public <P1> Builder<T> with(Consumer1<T, P1> consumer, P1 p1) {
@@ -43,7 +49,7 @@ public class Builder<T> {
     }
 
     public T build() {
-        T value = instantiator.get();
+        T value = supplier.get();
         modifiers.forEach(modifier -> modifier.accept(value));
         modifiers.clear();
         return value;

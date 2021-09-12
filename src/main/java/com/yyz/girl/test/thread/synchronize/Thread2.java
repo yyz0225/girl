@@ -1,4 +1,4 @@
-package com.yyz.girl.test;
+package com.yyz.girl.test.thread.synchronize;
 
 /**
  * @Author: yyz

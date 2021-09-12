@@ -1,4 +1,4 @@
-package com.yyz.girl.test;
+package com.yyz.girl.test.thread.synchronize;
 
 /**
  * @Author: yyz
@@ -93,6 +93,11 @@ public class Thread3 {
             }
         });
         t4.start();
+        //try {
+        //    t4.join();
+        //} catch (InterruptedException e) {
+        //    e.printStackTrace();
+        //}
 
         System.out.println("main");
 

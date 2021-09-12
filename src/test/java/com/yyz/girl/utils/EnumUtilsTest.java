@@ -15,7 +15,7 @@ public class EnumUtilsTest {
     @Test
     public void getEnumObject() {
 
-        String msg = getEnumValue("3");
+        String msg = getEnumValue("101");
         System.out.println(msg);
     }
 

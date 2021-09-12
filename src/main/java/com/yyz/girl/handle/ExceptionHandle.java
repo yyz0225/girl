@@ -10,7 +10,10 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 /**
+ * 全局异常处理 使用@ControllerAdvice和@ExceptionHandler注解
  * 返回的信息进行统一异常处理,捕获controller层的异常,然后分类进行异常处理
+ * @ControllerAdvice 注解表示这是一个增强版的Controller,用于全局数据处理
+ * @ExceptionHandler 异常处理器,用来捕获异常,对异常进行分类处理
  * @author : yyz
  * @date : 20181101
  *
